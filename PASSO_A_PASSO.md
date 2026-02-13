@@ -1,6 +1,6 @@
 ﻿# Passo a passo: pagina estatica simples com HTML, CSS e JS
 
-Este guia cria a pagina aos poucos. Em cada etapa, voce adiciona um trecho de codigo, entende o motivo e testa no navegador. Ao final, a pagina estara completa.
+Este guia cria a pagina **tijolo por tijolo**. Cada etapa constrói uma parte do HTML, adiciona classes semanticas, e aplica CSS para estilizar. Assim, voce ve o progresso visual em tempo real e entende como cada elemento contribui para a pagina final.
 
 ## 1) Estrutura do projeto
 
@@ -87,56 +87,62 @@ Substitua o conteudo do `head` pelo bloco abaixo:
 - O titulo aparece na aba do navegador.
 - O arquivo CSS esta linkado (mesmo vazio, o link deve existir).
 
-## 4) HTML: header com logo
+## 4.1) HTML: header e navbar - Estrutura sem classes
 
-### Objetivo (Etapa 4)
+### Objetivo (Etapa 4.1)
 
-Adicionar o cabecalho e a logo.
+Criar a estrutura do cabecalho com navbar e logo usando apenas tags HTML semanticas.
 
-### Por que isso existe (Etapa 4)
+### Por que isso existe (Etapa 4.1)
 
-O header organiza a navegacao principal e reforca a identidade da pagina.
+Comecamos com a estrutura pura, sem classes. Assim, voce entende a hierarquia das tags antes de estilizar.
 
-### Como usar (Etapa 4)
+### Como usar (Etapa 4.1)
 
 Dentro do `body`, adicione este bloco:
 
-### Codigo (Etapa 4)
+### Codigo (Etapa 4.1)
 
 ```html
-  <header class="site-header">
-    <a class="skip-link" href="#conteudo">Pular para o conteudo</a>
-    <nav class="navbar" aria-label="Navegacao principal">
-      <a class="logo" href="#">
-        <span aria-hidden="true">&#9872;</span>
-        <span class="logo-text">Web 101</span>
-      </a>
+  <header>
+    <a href="#conteudo">Pular para o conteudo</a>
+    <nav aria-label="Navegacao principal">
+      <a href="#">Web 101</a>
+      <ul>
+        <li><a href="#fundamentos">Fundamentos</a></li>
+        <li><a href="#laboratorio">Laboratorio</a></li>
+        <li><a href="#recursos">Recursos</a></li>
+      </ul>
+      <button type="button">Alternar tema</button>
     </nav>
   </header>
 ```
 
-### Checkpoint de verificacao (Etapa 4)
+### Checkpoint de verificacao (Etapa 4.1)
 
-- O cabecalho aparece no topo da pagina.
-- A logo aparece ao lado do texto "Web 101".
+- O cabecalho aparece no topo com elementos em linha.
+- Os tres links de navegacao estao visiveis.
+- O botao "Alternar tema" esta presente.
 
-## 5) HTML: links do menu e botao de tema
+## 4.2) HTML: header e navbar - Adicionar classes
 
-### Objetivo (Etapa 5)
+### Objetivo (Etapa 4.2)
 
-Completar a navegacao principal com links e o botao de tema.
+Adicionar classes semanticas ao header para permitir estilizacao.
 
-### Por que isso existe (Etapa 5)
+### Por que isso existe (Etapa 4.2)
 
-Links permitem navegar dentro da pagina e o botao controla o modo escuro via JavaScript.
+Com classes, conseguimos direcionar CSS para elementos especificos sem afetar toda a pagina.
 
-### Como usar (Etapa 5)
+### Como usar (Etapa 4.2)
 
-Substitua o bloco de navegacao pelo trecho completo abaixo:
+Substitua o bloco do header pelo codigo com classes:
 
-### Codigo (Etapa 5)
+### Codigo (Etapa 4.2)
 
 ```html
+  <header class="site-header">
+    <a class="skip-link" href="#conteudo">Pular para o conteudo</a>
     <nav class="navbar" aria-label="Navegacao principal">
       <a class="logo" href="#">
         <span aria-hidden="true">&#9872;</span>
@@ -151,382 +157,30 @@ Substitua o bloco de navegacao pelo trecho completo abaixo:
         Alternar tema
       </button>
     </nav>
+  </header>
 ```
 
-### Checkpoint de verificacao (Etapa 5)
+### Checkpoint de verificacao (Etapa 4.2)
 
-- Os tres links de navegacao estao visiveis.
-- O botao "Alternar tema" esta presente.
+- As classes foram adicionadas.
+- A pagina continua visualmente igual (sem CSS ainda).
+- Nao ha erros no console.
 
-## 6) HTML: hero com texto principal
+## 4.3) CSS: estilizar header e navbar
 
-### Objetivo (Etapa 6)
+### Objetivo (Etapa 4.3)
 
-Adicionar a area de destaque com titulo e texto introdutorio.
+Aplicar CSS para estilizar header, navbar e seus componentes internos.
 
-### Por que isso existe (Etapa 6)
+### Por que isso existe (Etapa 4.3)
 
-O hero apresenta o objetivo da pagina e guia o usuario para a acao principal.
+CSS transforma o HTML bruto em uma interface visualmente atrativa e organizada.
 
-### Como usar (Etapa 6)
+### Como usar (Etapa 4.3)
 
-Dentro do `header`, logo depois do `</nav>`, adicione:
+Cole este bloco em styles.css (comece com variaveis primeiro):
 
-### Codigo (Etapa 6)
-
-```html
-    <section class="hero" aria-labelledby="titulo-principal">
-      <div class="hero-text">
-        <p class="eyebrow">Aula pratica</p>
-        <h1 id="titulo-principal">Fundamentos de paginas web</h1>
-        <p>
-          Esta pagina demonstra HTML semantico, estilos organizados e JavaScript
-          simples para interacoes.
-        </p>
-        <button class="primary-cta" type="button" id="ctaButton">Ver exemplo</button>
-      </div>
-    </section>
-```
-
-### Checkpoint de verificacao (Etapa 6)
-
-- O titulo principal e o botao "Ver exemplo" aparecem.
-
-## 7) HTML: hero com card lateral
-
-### Objetivo (Etapa 7)
-
-Adicionar o card lateral que exibira o status e o relogio.
-
-### Por que isso existe (Etapa 7)
-
-O card mostra informacoes dinamicas atualizadas pelo JavaScript.
-
-### Como usar (Etapa 7)
-
-Substitua a section do hero pelo bloco completo abaixo:
-
-### Codigo (Etapa 7)
-
-```html
-    <section class="hero" aria-labelledby="titulo-principal">
-      <div class="hero-text">
-        <p class="eyebrow">Aula pratica</p>
-        <h1 id="titulo-principal">Fundamentos de paginas web</h1>
-        <p>
-          Esta pagina demonstra HTML semantico, estilos organizados e JavaScript
-          simples para interacoes.
-        </p>
-        <button class="primary-cta" type="button" id="ctaButton">Ver exemplo</button>
-      </div>
-      <aside class="hero-card" aria-live="polite">
-        <h2 class="card-title">Status da aula</h2>
-        <p class="card-message" id="statusMessage">Aguardando sua interacao.</p>
-        <p class="card-meta" id="clock">--:--</p>
-      </aside>
-    </section>
-```
-
-### Checkpoint de verificacao (Etapa 7)
-
-- O card lateral aparece com texto de status e relogio.
-
-## 8) HTML: main e cabecalho de fundamentos
-
-### Objetivo (Etapa 8)
-
-Criar a area principal e a primeira secao.
-
-### Por que isso existe (Etapa 8)
-
-O `main` identifica o conteudo principal da pagina, e a secao organiza o tema.
-
-### Como usar (Etapa 8)
-
-Depois do `</header>`, adicione:
-
-### Codigo (Etapa 8)
-
-```html
-  <main id="conteudo">
-    <section id="fundamentos" class="section">
-      <header>
-        <h2>Fundamentos essenciais</h2>
-        <p>Organize o conteudo com tags que fazem sentido.</p>
-      </header>
-    </section>
-  </main>
-```
-
-### Checkpoint de verificacao (Etapa 8)
-
-- A secao de fundamentos aparece abaixo do header.
-
-## 9) HTML: grid de fundamentos
-
-### Objetivo (Etapa 9)
-
-Adicionar os tres artigos de fundamentos.
-
-### Por que isso existe (Etapa 9)
-
-Artigos separam topicos relacionados e deixam a leitura mais clara.
-
-### Como usar (Etapa 9)
-
-Dentro da secao de fundamentos, logo abaixo do header, adicione:
-
-### Codigo (Etapa 9)
-
-```html
-      <div class="grid">
-        <article class="topic">
-          <h3>HTML semantico</h3>
-          <p>
-            Use <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code> e
-            <code>&lt;article&gt;</code> para dar significado ao conteudo.
-          </p>
-        </article>
-        <article class="topic">
-          <h3>CSS organizado</h3>
-          <p>
-            Separe responsabilidades com variaveis, seletores claros e regras
-            reutilizaveis.
-          </p>
-        </article>
-        <article class="topic">
-          <h3>JS com objetivo</h3>
-          <p>
-            Crie interacoes pequenas e previsiveis, sem misturar com a camada de estilo.
-          </p>
-        </article>
-      </div>
-```
-
-### Checkpoint de verificacao (Etapa 9)
-
-- Os tres artigos de fundamentos aparecem.
-
-## 10) HTML: secao de laboratorio
-
-### Objetivo (Etapa 10)
-
-Criar a secao de laboratorio para interacoes praticas.
-
-### Por que isso existe (Etapa 10)
-
-Essa secao separa exercicios praticos do conteudo teorico.
-
-### Como usar (Etapa 10)
-
-Depois da secao de fundamentos, adicione:
-
-### Codigo (Etapa 10)
-
-```html
-    <section id="laboratorio" class="section alt">
-      <header>
-        <h2>Laboratorio pratico</h2>
-        <p>Experimente os exemplos e observe o comportamento no navegador.</p>
-      </header>
-      <div class="lab">
-      </div>
-    </section>
-```
-
-### Checkpoint de verificacao (Etapa 10)
-
-- A secao de laboratorio aparece com o titulo e o texto introdutorio.
-
-## 11) HTML: checklist do laboratorio
-
-### Objetivo (Etapa 11)
-
-Adicionar o checklist com itens da aula.
-
-### Por que isso existe (Etapa 11)
-
-O checklist sera usado para demonstrar eventos e contagem no JavaScript.
-
-### Como usar (Etapa 11)
-
-Dentro de `<div class="lab">`, adicione:
-
-### Codigo (Etapa 11)
-
-```html
-        <article class="lab-card">
-          <h3>Checklist da aula</h3>
-          <ul class="checklist" id="checklist">
-            <li>
-              <label>
-                <input type="checkbox" name="item" />
-                Estrutura basica do HTML
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="checkbox" name="item" />
-                Estilos com variaveis
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="checkbox" name="item" />
-                Interacao com JavaScript
-              </label>
-            </li>
-          </ul>
-          <p class="progress" id="progressText">0 de 3 itens concluidos</p>
-        </article>
-```
-
-### Checkpoint de verificacao (Etapa 11)
-
-- O checklist aparece com tres itens.
-- O texto de progresso aparece abaixo da lista.
-
-## 12) HTML: notas rapidas
-
-### Objetivo (Etapa 12)
-
-Adicionar o formulario de notas e o bloco de resultado.
-
-### Por que isso existe (Etapa 12)
-
-O formulario permite exercitar envio de dados e atualizacao do DOM.
-
-### Como usar (Etapa 12)
-
-Ainda dentro de `<div class="lab">`, adicione este segundo card:
-
-### Codigo (Etapa 12)
-
-```html
-        <article class="lab-card">
-          <h3>Notas rapidas</h3>
-          <form class="note-form" id="noteForm">
-            <label for="nota">Escreva uma nota para revisar depois</label>
-            <textarea id="nota" name="nota" rows="4" placeholder="Ex.: revisar seletores CSS"></textarea>
-            <button type="submit">Salvar nota</button>
-          </form>
-          <p class="note-output" id="noteOutput" aria-live="polite">Nenhuma nota ainda.</p>
-        </article>
-```
-
-### Checkpoint de verificacao (Etapa 12)
-
-- O formulario de notas aparece ao lado do checklist.
-- O texto "Nenhuma nota ainda." aparece abaixo do formulario.
-
-## 13) HTML: secao de recursos
-
-### Objetivo (Etapa 13)
-
-Criar a secao com links de estudo.
-
-### Por que isso existe (Etapa 13)
-
-Ajuda a direcionar o aluno para documentacao oficial.
-
-### Como usar (Etapa 13)
-
-Depois da secao de laboratorio, adicione:
-
-### Codigo (Etapa 13)
-
-```html
-    <section id="recursos" class="section">
-      <header>
-        <h2>Recursos de estudo</h2>
-        <p>Links de referencia para aprofundar o conteudo.</p>
-      </header>
-      <div class="resource-list">
-      </div>
-    </section>
-```
-
-### Checkpoint de verificacao (Etapa 13)
-
-- A secao de recursos aparece com titulo e descricao.
-
-## 14) HTML: links de recursos
-
-### Objetivo (Etapa 14)
-
-Adicionar os tres links de documentacao.
-
-### Por que isso existe (Etapa 14)
-
-Links externos precisam de `noopener noreferrer` para seguranca.
-
-### Como usar (Etapa 14)
-
-Dentro de `<div class="resource-list">`, adicione:
-
-### Codigo (Etapa 14)
-
-```html
-        <a class="resource" href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank" rel="noopener noreferrer">
-          Documentacao HTML
-        </a>
-        <a class="resource" href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank" rel="noopener noreferrer">
-          Guia de CSS
-        </a>
-        <a class="resource" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">
-          JavaScript para iniciantes
-        </a>
-```
-
-### Checkpoint de verificacao (Etapa 14)
-
-- Os tres links aparecem na secao de recursos.
-
-## 15) HTML: rodape e script
-
-### Objetivo (Etapa 15)
-
-Finalizar a pagina e carregar o JavaScript.
-
-### Por que isso existe (Etapa 15)
-
-O rodape fecha o documento, e o script carrega o comportamento interativo.
-
-### Como usar (Etapa 15)
-
-Depois do `</main>`, adicione:
-
-### Codigo (Etapa 15)
-
-```html
-  <footer class="site-footer">
-    <p>Prof. Web | Fundamentos de paginas web</p>
-    <p>Exercicio: tornar a pagina responsiva na proxima aula.</p>
-  </footer>
-
-  <script src="script.js" defer></script>
-```
-
-### Checkpoint de verificacao (Etapa 15)
-
-- O rodape aparece no final da pagina.
-- O arquivo script.js esta referenciado.
-
-## 16) CSS: variaveis e estilos globais
-
-### Objetivo (Etapa 16)
-
-Definir variaveis e estilos globais.
-
-### Por que isso existe (Etapa 16)
-
-Variaveis evitam repeticao e facilitam ajustes futuros.
-
-### Como usar (Etapa 16)
-
-Cole este bloco em styles.css:
-
-### Codigo (Etapa 16)
+### Codigo (Etapa 4.3)
 
 ```css
 :root {
@@ -556,29 +210,7 @@ body {
   color: var(--ink);
   line-height: 1.6;
 }
-```
 
-### Checkpoint de verificacao (Etapa 16)
-
-- O fundo e a tipografia mudam ao recarregar a pagina.
-
-## 17) CSS: elementos basicos
-
-### Objetivo (Etapa 17)
-
-Padronizar imagens e links.
-
-### Por que isso existe (Etapa 17)
-
-Imagens responsivas e links sem sublinhado mantem a consistencia visual.
-
-### Como usar (Etapa 17)
-
-Adicione ao final de styles.css:
-
-### Codigo (Etapa 17)
-
-```css
 img {
   max-width: 100%;
   display: block;
@@ -588,31 +220,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
-```
 
-### Checkpoint de verificacao (Etapa 17)
-
-- Nao ha sublinhado nos links.
-
-## 18) CSS: header e navbar
-
-### Objetivo (Etapa 18)
-
-Estilizar o cabecalho e a barra de navegacao.
-
-### Por que isso existe (Etapa 18)
-
-Um header com destaque melhora a hierarquia visual.
-
-### Como usar (Etapa 18)
-
-Adicione ao final de styles.css:
-
-### Codigo (Etapa 18)
-
-```css
 .site-header {
-  padding: 24px 8vw 64px;
+  padding: 24px 8vw 48px;
 }
 
 .skip-link {
@@ -652,30 +262,7 @@ Adicione ao final de styles.css:
 .logo-text {
   font-family: var(--font-title);
 }
-```
 
-### Checkpoint de verificacao (Etapa 18)
-
-- O cabecalho vira um bloco destacado.
-- A logo aparece alinhada com o texto.
-
-## 19) CSS: links e botao do menu
-
-### Objetivo (Etapa 19)
-
-Estilizar os links do menu e o botao de tema.
-
-### Por que isso existe (Etapa 19)
-
-Feedback visual melhora a navegacao e deixa a interface mais clara.
-
-### Como usar (Etapa 19)
-
-Adicione ao final de styles.css:
-
-### Codigo (Etapa 19)
-
-```css
 .nav-links {
   list-style: none;
   display: flex;
@@ -704,34 +291,79 @@ Adicione ao final de styles.css:
 }
 ```
 
-### Checkpoint de verificacao (Etapa 19)
+### Checkpoint de verificacao (Etapa 4.3)
 
-- Os links mudam de fundo ao passar o mouse.
-- O botao de tema aparece com borda arredondada.
+- O header aparece com fundo e espacamento apropriado.
+- A navbar tem card com borda e sombra.
+- A logo aparece alinhada no canto esquerdo.
+- Os links estao centralizados e mudam de fundo ao passar mouse.
+- O botao de tema tem borda e esta alinhado a direita.
 
-## 20) CSS: layout do hero
+## 5) HTML: seção hero com texto e card
 
-### Objetivo (Etapa 20)
+### Objetivo (Etapa 5)
 
-Criar o layout em duas colunas do hero.
+Adicionar a area de destaque (hero) com titulo, texto introdutorio e card lateral.
 
-### Por que isso existe (Etapa 20)
+### Por que isso existe (Etapa 5)
 
-Separar texto e card melhora a leitura e o foco.
+O hero e um ponto focal importante da pagina. Apresenta a proposta de valor e chama o usuario para a acao.
 
-### Como usar (Etapa 20)
+### Como usar (Etapa 5)
+
+Dentro do `body`, logo apos `</header>`, adicione:
+
+### Codigo (Etapa 5)
+
+```html
+  <section class="hero" aria-labelledby="titulo-principal">
+    <div class="hero-text">
+      <p class="eyebrow">Aula pratica</p>
+      <h1 id="titulo-principal">Fundamentos de paginas web</h1>
+      <p>
+        Esta pagina demonstra HTML semantico, estilos organizados e JavaScript
+        simples para interacoes.
+      </p>
+      <button class="primary-cta" type="button" id="ctaButton">Ver exemplo</button>
+    </div>
+    <aside class="hero-card" aria-live="polite">
+      <h2 class="card-title">Status da aula</h2>
+      <p class="card-message" id="statusMessage">Aguardando sua interacao.</p>
+      <p class="card-meta" id="clock">--:--</p>
+    </aside>
+  </section>
+```
+
+### Checkpoint de verificacao (Etapa 5)
+
+- O titulo principal aparece com tamanho destacado.
+- O botao "Ver exemplo" esta presente.
+- O card lateral aparece com texto "Status da aula".
+
+## 5.1) CSS: estilizar hero
+
+### Objetivo (Etapa 5.1)
+
+Aplicar CSS para criar o layout em duas colunas e estilizar o card.
+
+### Por que isso existe (Etapa 5.1)
+
+O layout de duas colunas melhora a leitura e separa visualmente texto da informacao dinamica.
+
+### Como usar (Etapa 5.1)
 
 Adicione ao final de styles.css:
 
-### Codigo (Etapa 20)
+### Codigo (Etapa 5.1)
 
 ```css
 .hero {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 32px;
-  margin-top: 40px;
+  margin: 40px 8vw;
   align-items: center;
+  padding: 0;
 }
 
 .hero-text h1 {
@@ -766,30 +398,7 @@ Adicione ao final de styles.css:
   background: var(--accent-dark);
   transform: translateY(-1px);
 }
-```
 
-### Checkpoint de verificacao (Etapa 20)
-
-- O hero aparece em duas colunas.
-- O botao principal tem destaque e hover.
-
-## 21) CSS: card do hero
-
-### Objetivo (Etapa 21)
-
-Estilizar o card lateral do hero.
-
-### Por que isso existe (Etapa 21)
-
-O card precisa parecer um bloco separado e legivel.
-
-### Como usar (Etapa 21)
-
-Adicione ao final de styles.css:
-
-### Codigo (Etapa 21)
-
-```css
 .hero-card {
   background: var(--surface);
   border-radius: var(--radius);
@@ -815,26 +424,143 @@ Adicione ao final de styles.css:
 }
 ```
 
-### Checkpoint de verificacao (Etapa 21)
+### Checkpoint de verificacao (Etapa 5.1)
 
-- O card tem fundo branco e sombra.
-- O relogio fica em destaque.
+- O hero aparece em duas colunas lado a lado.
+- O card lateral tem borda, sombra e espacamento.
+- O botao principal muda de cor ao passar o mouse.
+- O titulo aparece em tamanho grande e fonte de titulo.
 
-## 22) CSS: secoes e grid de fundamentos
+## 6) HTML: main com as tres secoes de conteudo
 
-### Objetivo (Etapa 22)
+### Objetivo (Etapa 6)
 
-Estilizar as secoes e a grade de fundamentos.
+Criar a area principal com tres secoes: Fundamentos, Laboratorio e Recursos.
 
-### Por que isso existe (Etapa 22)
+### Por que isso existe (Etapa 6)
 
-Uma grade consistente melhora a leitura em blocos.
+A tag `main` semanticamente identifica o conteudo principal. As tres secoes organizam temas distintos.
 
-### Como usar (Etapa 22)
+### Como usar (Etapa 6)
+
+Depois do `</section>` do hero, adicione:
+
+### Codigo (Etapa 6)
+
+```html
+  <main id="conteudo">
+    <section id="fundamentos" class="section">
+      <header>
+        <h2>Fundamentos essenciais</h2>
+        <p>Organize o conteudo com tags que fazem sentido.</p>
+      </header>
+      <div class="grid">
+        <article class="topic">
+          <h3>HTML semantico</h3>
+          <p>
+            Use <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code> e
+            <code>&lt;article&gt;</code> para dar significado ao conteudo.
+          </p>
+        </article>
+        <article class="topic">
+          <h3>CSS organizado</h3>
+          <p>
+            Separe responsabilidades com variaveis, seletores claros e regras
+            reutilizaveis.
+          </p>
+        </article>
+        <article class="topic">
+          <h3>JS com objetivo</h3>
+          <p>
+            Crie interacoes pequenas e previsiveis, sem misturar com a camada de estilo.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="laboratorio" class="section alt">
+      <header>
+        <h2>Laboratorio pratico</h2>
+        <p>Experimente os exemplos e observe o comportamento no navegador.</p>
+      </header>
+      <div class="lab">
+        <article class="lab-card">
+          <h3>Checklist da aula</h3>
+          <ul class="checklist" id="checklist">
+            <li>
+              <label>
+                <input type="checkbox" name="item" />
+                Estrutura basica do HTML
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="item" />
+                Estilos com variaveis
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="item" />
+                Interacao com JavaScript
+              </label>
+            </li>
+          </ul>
+          <p class="progress" id="progressText">0 de 3 itens concluidos</p>
+        </article>
+        <article class="lab-card">
+          <h3>Notas rapidas</h3>
+          <form class="note-form" id="noteForm">
+            <label for="nota">Escreva uma nota para revisar depois</label>
+            <textarea id="nota" name="nota" rows="4" placeholder="Ex.: revisar seletores CSS"></textarea>
+            <button type="submit">Salvar nota</button>
+          </form>
+          <p class="note-output" id="noteOutput" aria-live="polite">Nenhuma nota ainda.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="recursos" class="section">
+      <header>
+        <h2>Recursos de estudo</h2>
+        <p>Links de referencia para aprofundar o conteudo.</p>
+      </header>
+      <div class="resource-list">
+        <a class="resource" href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank" rel="noopener noreferrer">
+          Documentacao HTML
+        </a>
+        <a class="resource" href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank" rel="noopener noreferrer">
+          Guia de CSS
+        </a>
+        <a class="resource" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">
+          JavaScript para iniciantes
+        </a>
+      </div>
+    </section>
+  </main>
+```
+
+### Checkpoint de verificacao (Etapa 6)
+
+- As tres secoes aparecem abaixo do hero.
+- Os artigos de fundamentos estao visiveis.
+- O checklist, notas e links aparecem na pagina.
+
+## 6.1) CSS: estilizar as secoes e conteudo principal
+
+### Objetivo (Etapa 6.1)
+
+Aplicar CSS para estilizar as tres secoes, grades e cards.
+
+### Por que isso existe (Etapa 6.1)
+
+CSS organiza o conteudo em blocos visuais consistentes e melhor legibilidade.
+
+### Como usar (Etapa 6.1)
 
 Adicione ao final de styles.css:
 
-### Codigo (Etapa 22)
+### Codigo (Etapa 6.1)
 
 ```css
 .section {
@@ -869,30 +595,7 @@ Adicione ao final de styles.css:
 .topic h3 {
   margin-bottom: 12px;
 }
-```
 
-### Checkpoint de verificacao (Etapa 22)
-
-- Os artigos aparecem em grade.
-- Cada card tem borda e sombra.
-
-## 23) CSS: laboratorio e checklist
-
-### Objetivo (Etapa 23)
-
-Estilizar a secao de laboratorio e o checklist.
-
-### Por que isso existe (Etapa 23)
-
-Os cards de laboratorio precisam se destacar do restante da pagina.
-
-### Como usar (Etapa 23)
-
-Adicione ao final de styles.css:
-
-### Codigo (Etapa 23)
-
-```css
 .section.alt {
   background: #f2e6d6;
 }
@@ -927,30 +630,7 @@ Adicione ao final de styles.css:
   font-weight: 700;
   color: var(--accent);
 }
-```
 
-### Checkpoint de verificacao (Etapa 23)
-
-- A secao de laboratorio tem fundo diferenciado.
-- Os dois cards aparecem lado a lado.
-
-## 24) CSS: formulario e nota
-
-### Objetivo (Etapa 24)
-
-Estilizar formulario, textarea e area de nota.
-
-### Por que isso existe (Etapa 24)
-
-Formularios precisam de espaco e legibilidade para uso confortavel.
-
-### Como usar (Etapa 24)
-
-Adicione ao final de styles.css:
-
-### Codigo (Etapa 24)
-
-```css
 .note-form {
   display: grid;
   gap: 12px;
@@ -981,30 +661,7 @@ textarea {
   border-radius: 12px;
   color: var(--muted);
 }
-```
 
-### Checkpoint de verificacao (Etapa 24)
-
-- O textarea tem bordas arredondadas.
-- O bloco de nota tem fundo claro.
-
-## 25) CSS: recursos e rodape
-
-### Objetivo (Etapa 25)
-
-Estilizar os links de recursos e o rodape.
-
-### Por que isso existe (Etapa 25)
-
-Os recursos precisam de destaque visual, e o rodape encerra a pagina com equilibrio.
-
-### Como usar (Etapa 25)
-
-Adicione ao final de styles.css:
-
-### Codigo (Etapa 25)
-
-```css
 .resource-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1021,36 +678,68 @@ Adicione ao final de styles.css:
   background: #fff7ef;
   text-align: center;
 }
+```
 
+### Checkpoint de verificacao (Etapa 6.1)
+
+- Os artigos de fundamentos aparecem em grid de 3 colunas.
+- A secao de laboratorio tem fundo diferenciado.
+- Os dois cards (checklist e notas) aparecem lado a lado.
+- Os tres links de recursos aparecem em caixas com borda tracejada.
+
+## 7) HTML: rodape e script
+
+### Objetivo (Etapa 7)
+
+Adicionar o rodape e referenciar o arquivo JavaScript.
+
+### Por que isso existe (Etapa 7)
+
+O rodape finaliza a pagina semanticamente. O script ativa as interacoes dinamicas.
+
+### Como usar (Etapa 7)
+
+Depois do `</main>`, adicione:
+
+### Codigo (Etapa 7)
+
+```html
+  <footer class="site-footer">
+    <p>Prof. Web | Fundamentos de paginas web</p>
+    <p>Exercicio: tornar a pagina responsiva na proxima aula.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+```
+
+### Checkpoint de verificacao (Etapa 7)
+
+- O rodape aparece no final da pagina.
+- Nao ha erros de referencia ao script.
+
+## 7.1) CSS: estilizar rodape e tema escuro
+
+### Objetivo (Etapa 7.1)
+
+Aplicar CSS ao rodape e adicionar variacoes de tema escuro.
+
+### Por que isso existe (Etapa 7.1)
+
+O rodape fecha a pagina com equilibrio visual. O tema escuro permite flexibilidade de uso.
+
+### Como usar (Etapa 7.1)
+
+Adicione ao final de styles.css:
+
+### Codigo (Etapa 7.1)
+
+```css
 .site-footer {
   padding: 32px 8vw 48px;
   text-align: center;
   color: var(--muted);
 }
-```
 
-### Checkpoint de verificacao (Etapa 25)
-
-- Os links de recursos aparecem em caixas.
-- O rodape fica centralizado.
-
-## 26) CSS: tema escuro
-
-### Objetivo (Etapa 26)
-
-Adicionar o tema escuro usando variaveis.
-
-### Por que isso existe (Etapa 26)
-
-Alternar o tema com variaveis simplifica a manutencao.
-
-### Como usar (Etapa 26)
-
-Adicione ao final de styles.css:
-
-### Codigo (Etapa 26)
-
-```css
 body.theme-dark {
   color-scheme: dark;
   --bg: #16120f;
@@ -1069,25 +758,26 @@ body.theme-dark .section.alt {
 }
 ```
 
-### Checkpoint de verificacao (Etapa 26)
+### Checkpoint de verificacao (Etapa 7.1)
 
-- Ao adicionar a classe `theme-dark` no `body`, o tema muda.
+- O rodape aparece centralizado e em cor discreta.
+- (CSS do tema escuro esta pronto; sera ativado por JavaScript).
 
-## 27) JavaScript: selecao de elementos
+## 8) JavaScript: selecionar elementos do DOM
 
-### Objetivo (Etapa 27)
+### Objetivo (Etapa 8)
 
-Selecionar elementos do DOM para uso no script.
+Capturar referencias aos elementos HTML que serao manipulados.
 
-### Por que isso existe (Etapa 27)
+### Por que isso existe (Etapa 8)
 
-Sem referencias aos elementos, o JS nao consegue alterar a pagina.
+Sem referencias, JavaScript nao consegue alterar a pagina. Seletores sao o primeiro passo.
 
-### Como usar (Etapa 27)
+### Como usar (Etapa 8)
 
 Cole este bloco em script.js:
 
-### Codigo (Etapa 27)
+### Codigo (Etapa 8)
 
 ```js
 const themeToggle = document.querySelector("#themeToggle");
@@ -1100,25 +790,26 @@ const noteForm = document.querySelector("#noteForm");
 const noteOutput = document.querySelector("#noteOutput");
 ```
 
-### Checkpoint de verificacao (Etapa 27)
+### Checkpoint de verificacao (Etapa 8)
 
-- Nao aparece nenhum erro de seletor no console.
+- Abra o console do navegador (F12).
+- Nao aparecem erros de seletor (ex.: "Cannot read property").
 
-## 28) JavaScript: mensagens do CTA
+## 9) JavaScript: definir mensagens e variaveis
 
-### Objetivo (Etapa 28)
+### Objetivo (Etapa 9)
 
-Criar o conjunto de mensagens e o indice atual.
+Criar um array de mensagens e indice para alternar entre elas.
 
-### Por que isso existe (Etapa 28)
+### Por que isso existe (Etapa 9)
 
-Permite alternar mensagens sem repetir codigo.
+Arrays e variaveis permitem comportamento dinamico sem duplicar codigo.
 
-### Como usar (Etapa 28)
+### Como usar (Etapa 9)
 
 Adicione ao final de script.js:
 
-### Codigo (Etapa 28)
+### Codigo (Etapa 9)
 
 ```js
 const messages = [
@@ -1130,25 +821,26 @@ const messages = [
 let messageIndex = 0;
 ```
 
-### Checkpoint de verificacao (Etapa 28)
+### Checkpoint de verificacao (Etapa 9)
 
-- O array de mensagens esta definido.
+- Array esta definido.
+- Nao ha erros de sintaxe no console.
 
-## 29) JavaScript: relogio e progresso
+## 10) JavaScript: criar funcoes reutilizaveis
 
-### Objetivo (Etapa 29)
+### Objetivo (Etapa 10)
 
-Criar funcoes para atualizar relogio e progresso.
+Definir funcoes para atualizar relogio, progresso e salvar notas.
 
-### Por que isso existe (Etapa 29)
+### Por que isso existe (Etapa 10)
 
-Funcoes reutilizaveis deixam o codigo mais simples de manter.
+Funcoes reutilizaveis deixam o codigo limpo e facil de manter.
 
-### Como usar (Etapa 29)
+### Como usar (Etapa 10)
 
 Adicione ao final de script.js:
 
-### Codigo (Etapa 29)
+### Codigo (Etapa 10)
 
 ```js
 const updateClock = () => {
@@ -1163,29 +855,7 @@ const updateProgress = () => {
   const checked = checklist.querySelectorAll("input[name='item']:checked").length;
   progressText.textContent = `${checked} de ${total} itens concluidos`;
 };
-```
 
-### Checkpoint de verificacao (Etapa 29)
-
-- As funcoes existem e nao geram erros ao serem chamadas.
-
-## 30) JavaScript: salvar nota
-
-### Objetivo (Etapa 30)
-
-Criar a funcao que exibe a nota salva.
-
-### Por que isso existe (Etapa 30)
-
-A funcao centraliza a validacao e a atualizacao do texto.
-
-### Como usar (Etapa 30)
-
-Adicione ao final de script.js:
-
-### Codigo (Etapa 30)
-
-```js
 const saveNote = (value) => {
   const trimmed = value.trim();
   if (!trimmed) {
@@ -1196,25 +866,26 @@ const saveNote = (value) => {
 };
 ```
 
-### Checkpoint de verificacao (Etapa 30)
+### Checkpoint de verificacao (Etapa 10)
 
-- A funcao `saveNote` existe e valida texto vazio.
+- Funcoes estao definidas.
+- Nao ha erros no console.
 
-## 31) JavaScript: eventos
+## 11) JavaScript: conectar eventos aos elementos
 
-### Objetivo (Etapa 31)
+### Objetivo (Etapa 11)
 
-Conectar botoes e formulario aos eventos do usuario.
+Adicionar listeners de eventos para interacoes do usuario.
 
-### Por que isso existe (Etapa 31)
+### Por que isso existe (Etapa 11)
 
-Eventos tornam a interface interativa.
+Eventos conectam HTML, CSS e JavaScript em uma experiencia interativa.
 
-### Como usar (Etapa 31)
+### Como usar (Etapa 11)
 
 Adicione ao final de script.js:
 
-### Codigo (Etapa 31)
+### Codigo (Etapa 11)
 
 ```js
 ctaButton.addEventListener("click", () => {
@@ -1236,27 +907,28 @@ themeToggle.addEventListener("click", () => {
 });
 ```
 
-### Checkpoint de verificacao (Etapa 31)
+### Checkpoint de verificacao (Etapa 11)
 
-- O botao "Ver exemplo" muda a mensagem.
-- O checklist atualiza o progresso.
-- O botao de tema alterna o modo escuro.
+- Clique em "Ver exemplo" e veja mensagens diferentes aparecerem.
+- Marque itens do checklist e veja o progresso mudar.
+- Escreva uma nota, envie e veja a nota ser exibida.
+- Clique em "Alternar tema" e veja o fundo mudar para escuro.
 
-## 32) JavaScript: inicializacao
+## 12) JavaScript: inicializar estado e loops
 
-### Objetivo (Etapa 32)
+### Objetivo (Etapa 12)
 
-Definir o estado inicial e atualizar o relogio periodicamente.
+Chamar funcoes de inicializacao e configurar atualizacoes periodicas.
 
-### Por que isso existe (Etapa 32)
+### Por que isso existe (Etapa 12)
 
-Garante que a interface comeca consistente.
+Inicializacao garante que a pagina comeca em estado consistente. Loops periodicos atualizam dados.
 
-### Como usar (Etapa 32)
+### Como usar (Etapa 12)
 
 Adicione ao final de script.js:
 
-### Codigo (Etapa 32)
+### Codigo (Etapa 12)
 
 ```js
 updateClock();
@@ -1264,26 +936,27 @@ updateProgress();
 setInterval(updateClock, 1000 * 30);
 ```
 
-### Checkpoint de verificacao (Etapa 32)
+### Checkpoint de verificacao (Etapa 12)
 
-- O relogio mostra a hora correta.
-- O texto de progresso inicia com 0 de 3.
+- O relogio mostra a hora correta ao carregar a pagina.
+- O texto de progresso inicia com "0 de 3 itens concluidos".
+- O relogio atualiza a cada 30 segundos automaticamente.
 
-## 33) Arvore de elementos
+## 13) Arvore de elementos (DOM)
 
-### Objetivo (Etapa 33)
+### Objetivo (Etapa 13)
 
-Visualizar a hierarquia semantica do HTML.
+Visualizar a hierarquia completa dos elementos HTML.
 
-### Por que isso existe (Etapa 33)
+### Por que isso existe (Etapa 13)
 
-Uma arvore ajuda a explicar estrutura e responsabilidades das tags.
+Uma arvore ajuda a entender a estrutura e as relacoes entre elementos.
 
-### Como usar (Etapa 33)
+### Como usar (Etapa 13)
 
-Use a arvore abaixo para explicar o DOM:
+Use a arvore abaixo como referencia:
 
-### Codigo (Etapa 33)
+### Codigo (Etapa 13)
 
 ```text
 html
@@ -1296,25 +969,25 @@ html
 `-- body
     |-- header.site-header
     |   |-- a.skip-link
-    |   |-- nav.navbar
-    |   |   |-- a.logo
-    |   |   |-- ul.nav-links
-    |   |   |   |-- li > a (Fundamentos)
-    |   |   |   |-- li > a (Laboratorio)
-    |   |   |   `-- li > a (Recursos)
-    |   |   `-- button.theme-toggle
-    |   `-- section.hero
-    |       |-- div.hero-text
-    |       |   |-- p.eyebrow
-    |       |   |-- h1
-    |       |   |-- p
-    |       |   `-- button.primary-cta
-    |       `-- aside.hero-card
-    |           |-- h2
-    |           |-- p#statusMessage
-    |           `-- p#clock
+    |   `-- nav.navbar
+    |       |-- a.logo
+    |       |-- ul.nav-links
+    |       |   |-- li > a (Fundamentos)
+    |       |   |-- li > a (Laboratorio)
+    |       |   `-- li > a (Recursos)
+    |       `-- button.theme-toggle
+    |-- section.hero
+    |   |-- div.hero-text
+    |   |   |-- p.eyebrow
+    |   |   |-- h1#titulo-principal
+    |   |   |-- p
+    |   |   `-- button.primary-cta
+    |   `-- aside.hero-card
+    |       |-- h2.card-title
+    |       |-- p#statusMessage
+    |       `-- p#clock
     |-- main#conteudo
-    |   |-- section#fundamentos
+    |   |-- section#fundamentos.section
     |   |   |-- header
     |   |   |   |-- h2
     |   |   |   `-- p
@@ -1322,13 +995,23 @@ html
     |   |       |-- article.topic (HTML semantico)
     |   |       |-- article.topic (CSS organizado)
     |   |       `-- article.topic (JS com objetivo)
-    |   |-- section#laboratorio
+    |   |-- section#laboratorio.section.alt
     |   |   |-- header
+    |   |   |   |-- h2
+    |   |   |   `-- p
     |   |   `-- div.lab
     |   |       |-- article.lab-card (Checklist)
+    |   |       |   |-- h3
+    |   |       |   |-- ul.checklist#checklist
+    |   |       |   `-- p.progress#progressText
     |   |       `-- article.lab-card (Notas)
-    |   `-- section#recursos
+    |   |           |-- h3
+    |   |           |-- form.note-form#noteForm
+    |   |           `-- p.note-output#noteOutput
+    |   `-- section#recursos.section
     |       |-- header
+    |       |   |-- h2
+    |       |   `-- p
     |       `-- div.resource-list
     |           |-- a.resource (HTML)
     |           |-- a.resource (CSS)
@@ -1337,54 +1020,72 @@ html
     `-- script (script.js)
 ```
 
-### Checkpoint de verificacao (Etapa 33)
+### Checkpoint de verificacao (Etapa 13)
 
-- A arvore corresponde ao HTML escrito.
+- A arvore corresponde ao seu HTML.
+- Voce consegue rastrear um elemento pela hierarquia usando DevTools (F12).
 
-## 34) Teste da pagina
+## 14) Teste completo da pagina
 
-### Objetivo (Etapa 34)
+### Objetivo (Etapa 14)
 
-Verificar se tudo esta funcionando.
+Validar que todas as funcionalidades funcionam corretamente.
 
-### Por que isso existe (Etapa 34)
+### Por que isso existe (Etapa 14)
 
-Testes manuais ajudam a encontrar erros antes de ensinar.
+Testes manuais ajudam a encontrar erros e confirmar que tudo esta integrado.
 
-### Como usar (Etapa 34)
+### Como usar (Etapa 14)
 
-Abra index.html no navegador e realize:
+Abra index.html no navegador e realize cada teste:
 
-- Clique em "Ver exemplo".
-- Marque os itens do checklist.
-- Salve uma nota.
-- Alterne o tema.
+1. **Clique no botao "Ver exemplo"**: Veja tres mensagens diferentes aparecerem.
+2. **Marque os checkboxes**: Veja o progresso atualizar para "1 de 3", "2 de 3", etc.
+3. **Escreva e envie uma nota**: Veja o texto aparecer como "Nota salva: [seu texto]".
+4. **Alterne o tema**: Clique em "Alternar tema" e veja o fundo mudar para escuro e cores ajustarem.
+5. **Verifique o relogio**: Veja a hora no card atualizar.
 
-### Checkpoint de verificacao (Etapa 34)
+### Checkpoint de verificacao (Etapa 14)
 
 - Todas as interacoes respondem como esperado.
-- Nenhum erro aparece no console do navegador.
+- Nenhum erro aparece no console (F12 > Console).
+- O tema escuro e claro funcionam corretamente.
+- A pagina e responsiva e legivel em seu navegador.
 
-## 35) Exercicios sugeridos
+## 15) Exercicios sugeridos
 
-### Objetivo (Etapa 35)
+### Objetivo (Etapa 15)
 
-Propor melhorias para aprofundar o aprendizado.
+Propor desafios praticos para aprofundar o aprendizado.
 
-### Por que isso existe (Etapa 35)
+### Por que isso existe (Etapa 15)
 
-Exercicios estimulam autonomia e pratica.
+Exercicios estimulam autonomia, pratica e consolidacao do conhecimento.
 
-### Como usar (Etapa 35)
+### Como usar (Etapa 15)
 
-Escolha pelo menos um exercicio:
+Escolha pelo menos um exercicio e execute:
 
-- Tornar o layout responsivo com `@media`.
-- Adicionar uma nova secao com conteudo proprio.
-- Alterar a paleta de cores mantendo contraste.
+**Nivel 1 (facil)**:
+
+- Alterar a paleta de cores mantendo o contraste.
+- Adicionar um novo artigo na secao de Fundamentos.
+- Mudar o emoji na logo para outro de sua escolha.
+
+**Nivel 2 (intermediario)**:
+
+- Tornar o layout responsivo com `@media` para celular.
 - Criar um botao para limpar a nota salva.
-- Mostrar uma mensagem quando todos os itens do checklist estiverem marcados.
+- Adicionar uma nova secao com conteudo proprio.
 
-### Checkpoint de verificacao (Etapa 35)
+**Nivel 3 (avancado)**:
 
-- Descreva o que mudou e por que mudou.
+- Salvar a nota em localStorage para persistencia.
+- Mostrar uma mensagem especial quando todos os checkboxes forem marcados.
+- Criar alternancia de tema com icones (sol e lua).
+
+### Checkpoint de verificacao (Etapa 15)
+
+- Descreva qual exercicio escolheu e por que.
+- Mostre o resultado funcionando.
+- Explique que partes do codigo HTML, CSS e JavaScript foram modificadas.
